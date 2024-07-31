@@ -1,0 +1,119 @@
+<h2 class="text-center my-5">{{ formText }} Employee</h2>
+
+@if(errorMessage){
+<div>
+  {{ errorMessage }}
+</div>
+}
+
+<form
+  (ngSubmit)="onSubmit()"
+  #employeeForm="ngForm"
+  class="border rounded p-4 w-50 mx-auto"
+>
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name</label>
+    <sup class="text-danger ms-1">*</sup>
+    <input
+      required
+      #firstName="ngModel"
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      [(ngModel)]="employee.firstName"
+    />
+
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(firstName)">
+      First Name is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+    <sup class="text-danger ms-1">*</sup>
+    <input
+      required
+      #lastName="ngModel"
+      type="text"
+      class="form-control"
+      id="lastName"
+      name="lastName"
+      [(ngModel)]="employee.lastName"
+    />
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(lastName)">
+      Last Name is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <sup class="text-danger ms-1">*</sup>
+    <input
+      required
+      #phone="ngModel"
+      type="phone"
+      class="form-control"
+      id="phone"
+      name="phone"
+      [(ngModel)]="employee.phone"
+    />
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(phone)">
+      Phone is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <sup class="text-danger ms-1">*</sup>
+    <input
+      required
+      email
+      #email="ngModel"
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      [(ngModel)]="employee.email"
+      aria-describedby="emailHelp"
+    />
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(email)">
+      Email is required.
+    </div>
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(email, 'email')">
+      Email is invalid.
+    </div>
+    <div id="emailHelp" class="form-text">
+      We'll never share your email with anyone else.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="position" class="form-label">Position</label>
+    <sup class="text-danger ms-1">*</sup>
+    <input
+      required
+      #position="ngModel"
+      type="text"
+      class="form-control"
+      id="position"
+      name="position"
+      [(ngModel)]="employee.position"
+    />
+    <div class="mt-2 text-danger" *ngIf="isInvalidByRequired(position)">
+      Position is required.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+      <button
+        type="submit"
+        class="btn btn-primary mt-3 w-100"
+        [disabled]="employeeForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
